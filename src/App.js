@@ -1,5 +1,5 @@
 import "./App.css";
-// import Card from "./components/Card/Card";
+import Card from "./components/Card/Card";
 import HeroSection from "./components/HeroSection/HeroSection";
 //@ts-ignore
 import NavBar from "./components/NavBar/NavBar";
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <NavBar />
       <HeroSection />
-      {/* <Card/> */}
+      <Card/>
     </div>
   );
 }
