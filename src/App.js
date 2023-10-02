@@ -1,15 +1,31 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import Card from "./components/Card/Card";
 import HeroSection from "./components/HeroSection/HeroSection";
 //@ts-ignore
 import NavBar from "./components/NavBar/NavBar";
+import { fetchTopAlbums } from "./components/api/api";
 
 function App() {
+  const [topAlbumData, settopAlbumData] = useState([]);
+  const generateTopAlbumData = async () => {
+    const data = await fetchTopAlbums();
+    console.log(data);
+    settopAlbumData(data);
+  };
+  useEffect(() => {
+    generateTopAlbumData();
+  }, []);
+  console.log(topAlbumData, "topAlbumData");
   return (
     <div className="App">
       <NavBar />
       <HeroSection />
-      <Card/>
+      <div className="cardContainer">
+      {topAlbumData.map((item) => {
+        return <Card key={item.id} data={item} type="album" />;
+      })}
+      </div>
     </div>
   );
 }
